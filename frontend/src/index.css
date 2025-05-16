@@ -33,3 +33,10 @@ body{
 .dark img.no-invert {
   filter: invert(1) hue-rotate(180deg);
 }
+
+@media (max-width:640px){
+    a.active{
+        background-color: black;
+        color: white;
+    }
+}

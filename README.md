@@ -1,3 +1,3 @@
 # E-Commerce-App
 
--E-Commerce Website made with React 
+-E-Commerce Website made with ReactJS, Node.js
