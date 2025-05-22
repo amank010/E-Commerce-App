@@ -20,7 +20,6 @@ const OurPolicy = () => {
             <p className='font-semibold'>Best customer support</p>
             <p className='text-gray-500'>We provide 24/7 customer support</p>
         </div>
-
     </div>
   )
 }
