@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {assets} from '../assets/assets'
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { ShopContext } from '../context/ShopContext'
 const Navbar = () => {
 
   const [visible, setVisible] = useState(false);
+
+  const {setShowSearch}= useContext(ShopContext);
 
   //Toggle dark mode
   const toggleDarkMode=()=>{
@@ -38,7 +41,7 @@ const Navbar = () => {
 
       {/* Action Buttons */}
       <div className='flex items-center gap-6'>
-        <img src={assets.search_icon} className='w-5 cursor-pointer' alt="" />
+        <img onClick={()=>setShowSearch(true)} src={assets.search_icon} className='w-5 cursor-pointer' alt="" />
         <div className='group relative'>
           <img src={assets.profile_icon} className='w-5 cursor-pointer' alt="" />
           <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
