@@ -19,6 +19,11 @@ a.active hr{
   }
   
 
+::-webkit-scrollbar{
+    display: none;
+}
+
+
 /* Light Mode (Default) */
 body{
     @apply bg-white text-black;
