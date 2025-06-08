@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { backendUrl, currency } from '../App'
 import {toast} from 'react-toastify'
 
-const List = () => {
+const List = ({token}) => {
 
   const [list,setList]=useState([])
 
@@ -11,7 +11,6 @@ const List = () => {
     try {
       
       const response =await axios.get(backendUrl + '/api/product/list')
-      console.log(response.data)
       if(response.data.success){
         setList(response.data.data)
       }
@@ -21,6 +20,22 @@ const List = () => {
     } catch (error) {
       console.log(error)
       toast.error(error.message)
+    }
+  }
+  
+  const removeProduct=async(id)=>{
+    try {
+       const response= await axios.post(backendUrl + '/api/product/remove', {id}, {headers:{token}})
+        if(response.data.success){
+          toast.success(response.data.message)
+          await fetchList();
+        }
+        else{
+          toast.error(response.data.message)
+        }
+      } catch (error) {
+        console.log(error)
+        toast.error(error.message)      
     }
   }
 
@@ -42,12 +57,12 @@ const List = () => {
       {/* -----------Product List----------------- */}
       {
         list.map((item,index)=>(
-          <div className='mt-2 outline-none grid grid-cols-[1fr_2fr_1fr_1fr_1fr] items-center gap-2 py-2 px-2 border text-sm' key={index}>
+          <div className='outline outline-gray-300 mt-2 grid grid-cols-[1fr_2fr_1fr_1fr_1fr] items-center gap-2 py-2 px-2 text-sm' key={index}>
             <img className='w-12' src={item.images[0]} alt="" />
             <p>{item.name}</p>
             <p>{item.category}</p>
             <p>{currency}{item.price}</p>
-            <p className=' text-center md:text-center cursor-pointer text-lg'>X</p>
+            <p onClick={()=>removeProduct(item._id)} className=' text-center md:text-center cursor-pointer text-lg'>X</p>
           </div>
         ))
       }

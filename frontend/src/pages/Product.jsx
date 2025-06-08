@@ -6,16 +6,16 @@ import RelatedProducts from "../components/RelatedProducts";
 
 const Product = () => {
   const { productId } = useParams();
-  const { products,currency, addToCart } = useContext(ShopContext);
+  const { product,currency, addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const[size,SetSize]=useState('');
 
   const fetchProductData = async () => {
-    products.map((item) => {
+    product.map((item) => {
       if (item._id === productId) {
         setProductData(item);
-        setImage(item.image[0]);
+        setImage(item.images[0]);
         return null;
       }
     });
@@ -23,7 +23,7 @@ const Product = () => {
 
   useEffect(() => {
     fetchProductData();
-  }, [productId, products]);
+  }, [productId, product]);
 
   return productData? (
     <div className="border-t-2 pt-10 translate-opacity ease-in duration-500 opacity-100">
@@ -32,7 +32,7 @@ const Product = () => {
         {/* Product Images   */}
         <div className="flex-1 flex flex-col-reverse gap-3 sm:flex-row">
           <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justfiy-normal">
-            {productData.image.map((item, index) => (
+            {productData.images.map((item, index) => (
               <img
                 onClick={() => setImage(item)}
                 src={item}

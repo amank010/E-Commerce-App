@@ -5,7 +5,7 @@ import { assets } from "../assets/assets";
 import CartTotal from "../components/cartTotal";
 
 const Cart = () => {
-  const { products, currency, cartItems, updateQuantity, navigate } =
+  const { product, currency, cartItems, updateQuantity, navigate } =
     useContext(ShopContext);
 
   const [cartData, setCartData] = useState([]);
@@ -33,7 +33,7 @@ const Cart = () => {
       </div>
       <div>
         {cartData.map((item, index) => {
-          const productData = products.find(
+          const productData = product.find(
             (prodcut) => prodcut._id === item._id
           );
           return (
@@ -44,7 +44,7 @@ const Cart = () => {
               <div className="flex items-start gap-6">
                 <img
                   className="w-16 sm:w-20"
-                  src={productData.image[0]}
+                  src={productData.images[0]}
                   alt=""
                 />
                 <div>

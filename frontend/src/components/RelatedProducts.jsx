@@ -6,14 +6,14 @@ import ProductItem from './ProductItem';
 
 const RelatedProducts = ({category,subCategory}) => {
 
-    const {products}=useContext(ShopContext);
+    const {product}=useContext(ShopContext);
     const [related,setRelated]=useState([]);
 
     useEffect(()=>{
 
-        if(products.length>0){
+        if(product.length>0){
 
-            let productsCopy=products.slice();
+            let productsCopy=product.slice();
             productsCopy=productsCopy.filter((item)=>category===item.category);
             productsCopy=productsCopy.filter((item)=>subCategory===item.subCategory);
     
@@ -21,7 +21,7 @@ const RelatedProducts = ({category,subCategory}) => {
         }
 
 
-    },[products])
+    },[product])
 
   return (
     <div className='my-24'>
@@ -30,7 +30,7 @@ const RelatedProducts = ({category,subCategory}) => {
       </div>
       <div className='grid grid-cols-2 gap-4 gap-y-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'>
         {related.map((item,index)=>(
-            <ProductItem key={index} id={item._id} price={item.price} image={item.image} />
+            <ProductItem key={index} id={item._id} price={item.price} image={item.images[0]} />
         ))
 
         }
