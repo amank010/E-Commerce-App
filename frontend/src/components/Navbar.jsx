@@ -28,7 +28,7 @@ const Navbar = () => {
   //   document.documentElement.classList.toggle("dark");
   // };
   return (
-    <div className="flex items-center justify-between mt-2 overflow-hidden py-4 mb-4 px-9 font medium border border-gray-300 rounded-md">
+    <div className="flex items-center justify-between mt-2 py-4 mb-4 px-9 font medium border border-gray-300 rounded-md">
       {/* Navigation Links */}
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
         <NavLink to="/" className="flex flex-col items-center gap-1">
